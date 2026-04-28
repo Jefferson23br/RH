@@ -3,87 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Processo Seletivo - Avaliação</title>
+    <title>Avaliação de Perfil - Indústria Gráfica</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f9; color: #333; padding: 20px; }
-        .container { max-width: 750px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .intro { text-align: center; color: #7f8c8d; margin-bottom: 30px; }
-        .user-info { display: flex; gap: 20px; margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px; }
-        .user-info div { flex: 1; }
-        input[type="text"], input[type="email"] { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        .question { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .question p { font-weight: bold; margin-bottom: 12px; color: #34495e; }
-        label { display: block; margin-bottom: 10px; cursor: pointer; font-size: 15px; }
-        input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
-        button { width: 100%; padding: 18px; background: #27ae60; color: white; border: none; border-radius: 6px; font-size: 18px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        button:hover { background: #219150; }
-        #success-msg { display: none; text-align: center; padding: 50px; }
-        .loading { display: none; text-align: center; color: #3498db; font-weight: bold; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; color: #333; padding: 20px; line-height: 1.6; }
+        .container { max-width: 850px; margin: auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #1a365d; text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 15px; margin-bottom: 10px; }
+        .intro { text-align: center; color: #4a5568; margin-bottom: 40px; font-weight: 500; }
+        
+        /* Cabeçalho de Identificação */
+        .user-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; padding: 25px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; }
+        .user-info div.full-width { grid-column: span 2; }
+        
+        label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #2d3748; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"] { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; transition: 0.3s; }
+        input:focus { border-color: #3498db; outline: none; background: #fff; }
+        
+        /* Estilização das Perguntas */
+        .question { margin-bottom: 30px; padding: 25px; border: 1px solid #edf2f7; border-radius: 12px; background: #ffffff; transition: transform 0.2s; }
+        .question:hover { transform: translateY(-2px); border-color: #cbd5e0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .question p { font-size: 16px; font-weight: 800; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label { display: flex; align-items: center; margin-bottom: 15px; cursor: pointer; font-size: 15px; padding: 10px; border-radius: 8px; border: 1px solid transparent; transition: 0.2s; }
+        .option-label:hover { background: #ebf8ff; border-color: #bee3f8; }
+        input[type="radio"] { margin-right: 15px; width: 20px; height: 20px; cursor: pointer; accent-color: #3498db; }
+        
+        /* Seção Final */
+        .salary-section { margin: 40px 0; padding: 25px; background: #fffbeb; border: 2px dashed #f6ad55; border-radius: 10px; }
+
+        button { width: 100%; padding: 20px; background: #27ae60; color: white; border: none; border-radius: 8px; font-size: 20px; cursor: pointer; font-weight: bold; transition: 0.4s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        button:hover { background: #2ecc71; transform: scale(1.01); box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4); }
+        
+        #success-msg { display: none; text-align: center; padding: 60px; }
+        .loading { display: none; text-align: center; color: #3498db; font-weight: bold; margin-top: 25px; font-size: 18px; }
+
+        @media (max-width: 650px) { .user-info { grid-template-columns: 1fr; } .user-info div.full-width { grid-column: span 1; } }
     </style>
 </head>
 <body>
 
 <div class="container" id="main-content">
-    <h1>Avaliação de Perfil Comportamental</h1>
-    <p class="intro">Responda a todas as questões pensando em sua atuação profissional predominante.</p>
+    <h1>Avaliação de Perfil Profissional Gráfico</h1>
+    <p class="intro">Analise as situações abaixo e responda com base no seu comportamento real no ambiente de produção.</p>
 
     <form id="behavioralForm" action="https://formspree.io/f/xkoplenw" method="POST">
         
         <div class="user-info">
-            <div>
+            <div class="full-width">
                 <label>Nome Completo:</label>
-                <input type="text" name="Nome_Candidato" required placeholder="Digite seu nome">
+                <input type="text" name="Nome_Candidato" required placeholder="Nome e sobrenome">
             </div>
             <div>
                 <label>E-mail:</label>
-                <input type="email" name="_replyto" required placeholder="seu@email.com">
+                <input type="email" name="_replyto" required placeholder="exemplo@email.com">
+            </div>
+            <div>
+                <label>Telefone / WhatsApp:</label>
+                <input type="tel" name="Telefone" required placeholder="(00) 00000-0000">
+            </div>
+            <div>
+                <label>CPF:</label>
+                <input type="text" name="CPF" required placeholder="000.000.000-00">
+            </div>
+            <div>
+                <label>Bairro:</label>
+                <input type="text" name="Bairro" required placeholder="Bairro onde reside">
+            </div>
+            <div class="full-width">
+                <label>Cidade / Estado:</label>
+                <input type="text" name="Cidade_Estado" required placeholder="Ex: São Paulo / SP">
             </div>
         </div>
 
         <div id="questions"></div>
 
-        <input type="hidden" name="PERFIL_CALCULADO" id="res_perfil">
-        <input type="hidden" name="PONTOS_DOMINANTE_A" id="res_a">
-        <input type="hidden" name="PONTOS_INFLUENTE_B" id="res_b">
-        <input type="hidden" name="PONTOS_ESTAVEL_C" id="res_c">
-        <input type="hidden" name="PONTOS_CONFORME_D" id="res_d">
-        <input type="hidden" name="_next" value="javascript:void(0)">
+        <div class="salary-section">
+            <label>Pretensão Salarial (R$):</label>
+            <input type="text" name="Pretensao_Salarial" required placeholder="Ex: 2.500,00">
+        </div>
 
-        <div class="loading" id="loading-text">Enviando respostas... aguarde.</div>
-        <button type="submit" id="btn-submit">Finalizar e Enviar Teste</button>
+        <input type="hidden" name="PERFIL_DOMINANTE_FINAL" id="res_perfil">
+        <input type="hidden" name="SCORE_D_DOMINANCIA" id="res_a">
+        <input type="hidden" name="SCORE_I_INFLUENCIA" id="res_b">
+        <input type="hidden" name="SCORE_S_ESTABILIDADE" id="res_c">
+        <input type="hidden" name="SCORE_C_CONFORMIDADE" id="res_d">
+
+        <div class="loading" id="loading-text">Processando dados e enviando...</div>
+        <button type="submit" id="btn-submit">Finalizar e Enviar Avaliação</button>
     </form>
 </div>
 
 <div class="container" id="success-msg">
-    <h2 style="color: #27ae60;">Teste Concluído!</h2>
-    <p>Suas respostas foram enviadas com sucesso para o departamento responsável.</p>
-    <p>Agradecemos sua participação.</p>
+    <h2 style="color: #27ae60;">Avaliação Recebida!</h2>
+    <p>Obrigado! Seus dados, pretensão salarial e perfil comportamental foram enviados com sucesso.</p>
 </div>
 
 <script>
     const data = [
-        { q: "Em situações de conflito, você:", a: "Enfrenta diretamente para resolver.", b: "Tenta apaziguar com bom humor.", c: "Ouve e busca um consenso.", d: "Analisa os fatos friamente." },
-        { q: "Sua maior motivação é:", a: "Poder e autonomia.", b: "Reconhecimento e prestígio.", c: "Segurança e estabilidade.", d: "Conhecimento e perfeição." },
-        { q: "Ao realizar uma tarefa, você prioriza:", a: "A velocidade e o resultado.", b: "A criatividade e o entusiasmo.", c: "A harmonia da equipe.", d: "A precisão e os detalhes." },
-        { q: "Como você prefere ser liderado?", a: "Com liberdade e desafios.", b: "Com incentivos e elogios.", c: "Com clareza e apoio.", d: "Com normas e instruções técnicas." },
-        { q: "Sua principal característica é:", a: "Determinação.", b: "Comunicatividade.", c: "Paciência.", d: "Organização." },
-        { q: "Em novos projetos, você sente:", a: "Vontade de assumir o controle.", b: "Empolgação para interagir.", c: "Necessidade de planejar o ritmo.", d: "Necessidade de investigar os riscos." },
-        { q: "O que te gera mais estresse?", a: "Sentir que está perdendo tempo.", b: "Ser ignorado ou excluído.", c: "Ambientes caóticos e brigas.", d: "Trabalhar sem dados ou lógica." },
-        { q: "Seu estilo de comunicação é:", a: "Direto e objetivo.", b: "Persuasivo e alegre.", c: "Calmo e acolhedor.", d: "Formal e contido." },
-        { q: "Como você lida com erros?", a: "Corrige rápido e segue em frente.", b: "Tenta minimizar com otimismo.", c: "Sente-se culpado e busca aprender.", d: "Analisa a causa raiz do erro." },
-        { q: "No tempo livre, você prefere:", a: "Atividades competitivas.", b: "Estar com muitos amigos.", c: "Descansar em paz e silêncio.", d: "Hobbies que exijam concentração." },
-        // Complementando as 20 perguntas solicitadas
-        { q: "Ao planejar algo, você:", a: "Define a meta e vai executando.", b: "Imagina o sucesso e as pessoas envolvidas.", c: "Pensa em como manter o equilíbrio.", d: "Escreve cada passo e regra." },
-        { q: "As pessoas dizem que você é:", a: "Exigente e focado.", b: "Divertido e falante.", c: "Confiável e tranquilo.", d: "Analítico e detalhista." },
-        { q: "Em um grupo, você busca:", a: "Eficiência.", b: "Popularidade.", c: "Lealdade.", d: "Exatidão." },
-        { q: "Sua reação à pressão é:", a: "Tornar-se mais agressivo/rápido.", b: "Tornar-se mais agitado/emotivo.", c: "Tornar-se mais lento/resistente.", d: "Tornar-se mais crítico/retraído." },
-        { q: "Você se sente melhor quando:", a: "Vence uma disputa.", b: "É o centro das atenções.", c: "Ajuda alguém sinceramente.", d: "Resolve um problema complexo." },
-        { q: "Sua organização pessoal é:", a: "Focada apenas no essencial.", b: "Um pouco desordenada.", c: "Previsível e constante.", d: "Meticulosa e lógica." },
-        { q: "O que você mais valoriza no trabalho?", a: "Independência.", b: "Networking.", c: "Ambiente amigável.", d: "Processos bem definidos." },
-        { q: "Seus argumentos são baseados em:", a: "Convicção e força.", b: "Entusiasmo e sonhos.", c: "Bem-estar e tradição.", d: "Evidências e provas." },
-        { q: "Diante de uma ordem injusta, você:", a: "Questiona e desafia abertamente.", b: "Tenta negociar de forma amigável.", c: "Aceita, mas fica chateado.", d: "Aponta os erros técnicos da ordem." },
-        { q: "Seu foco de vida hoje é:", a: "Conquista.", b: "Conexão.", c: "Serenidade.", d: "Competência." }
+        { q: "O lead time está no limite e uma máquina para. Sua reação:", a: "Tomo a frente e busco solução imediata para retomar o fluxo.", b: "Peço ajuda aos colegas para resolvermos de forma criativa.", c: "Aguardamos o técnico conforme o manual para evitar danos maiores.", d: "Analiso detalhadamente a causa da quebra antes de mexer." },
+        { q: "Você percebe um erro de cor em um lote já rodando:", a: "Interrompo a máquina e decido na hora como compensar o atraso.", b: "Aviso a equipe e tento encontrar uma forma de reaproveitar o papel.", c: "Chamo o supervisor para seguir o protocolo de descarte e ajuste.", d: "Paro tudo e confiro os parâmetros do densitômetro/prova de cor." },
+        { q: "Sobre o ambiente de produção, você prefere:", a: "Metas agressivas e alta velocidade de entrega.", b: "Troca de experiências e integração entre os setores.", c: "Um fluxo de trabalho previsível, estável e sem surpresas.", d: "Processos técnicos bem definidos e ferramentas precisas." },
+        { q: "Quando recebe uma instrução de trabalho mal explicada:", a: "Faço do meu jeito para não perder tempo e entrego o resultado.", b: "Converso com quem enviou a ordem para alinhar as expectativas.", c: "Aguardo uma explicação mais clara para não cometer erros.", d: "Procuro o manual ou o histórico de ordens para achar a lógica." },
+        { q: "Em relação ao desperdício de material (refugo):", a: "Aceito pequenos riscos se isso garantir o cumprimento do prazo.", b: "Tento motivar o grupo a ter mais cuidado com o desperdício.", c: "Sou muito cuidadoso e sigo o ritmo que minimize perdas.", d: "Controlo rigorosamente cada folha para garantir a exatidão técnica." },
+        { q: "Como você lida com mudanças de última hora no projeto?", a: "Adapto-me rápido e foco em despachar logo a mercadoria.", b: "Vejo como uma oportunidade de criar algo novo com o cliente.", c: "Sinto desconforto, pois prefiro o planejamento inicial.", d: "Verifico se a mudança não compromete a integridade técnica." },
+        { q: "Seu principal foco na gráfica é:", a: "Bater recordes de produção e agilidade.", b: "Manter o clima de trabalho agradável e colaborativo.", c: "Garantir a segurança e o suporte aos colegas.", d: "Assegurar que a qualidade final seja impecável." },
+        { q: "Ao organizar sua bancada de trabalho:", a: "Mantenho apenas o essencial para a velocidade da produção.", b: "Gosto de ter itens que facilitem a interação com outros.", c: "Mantenho tudo sempre no mesmo lugar por hábito e segurança.", d: "Organizo por categorias e etiquetas para controle absoluto." },
+        { q: "Diante de um erro técnico grave de um colega:", a: "Cobro rapidez na correção para não afetar o meu lead time.", b: "Ofereço apoio e tento aliviar o peso da situação.", c: "Ajudo a consertar com paciência para manter a harmonia.", d: "Aponto onde o processo falhou para que não ocorra novamente." },
+        { q: "Sobre ordens de serviço (OS) acumuladas:", a: "Priorizo as mais difíceis para me livrar logo do desafio.", b: "Tento fazer as que envolvem mais pessoas primeiro.", c: "Sigo a ordem de chegada rigorosamente, sem pular etapas.", d: "Analiso qual OS tem maior risco técnico antes de começar." },
+        { q: "Em uma reunião de produção, você costuma:", a: "Ser direto e sugerir soluções que economizem tempo.", b: "Dar ideias entusiasmadas para melhorar o ambiente.", c: "Ouvir a todos e concordar com a maioria para evitar conflito.", d: "Questionar dados e especificações que não parecem lógicos." },
+        { q: "O que mais te motiva no setor gráfico?", a: "Vencer desafios e ser reconhecido pela produtividade.", b: "Trabalhar em uma equipe unida e comunicativa.", c: "Ter estabilidade e um emprego seguro por longo prazo.", d: "Tornar-se um especialista técnico altamente preciso." },
+        { q: "Se o cliente pede um prazo impossível:", a: "Aceito o desafio e coloco a máquina para voar.", b: "Tento negociar com o comercial de forma diplomática.", c: "Preocupo-me com a sobrecarga, mas tento ajudar.", d: "Digo que tecnicamente o processo exige X horas e não mudo." },
+        { q: "Sua postura sob pressão extrema é:", a: "Fico mais decidido e até um pouco agressivo pelo resultado.", b: "Fico mais agitado e falo mais para aliviar a tensão.", c: "Fico mais calado e tento manter a calma do grupo.", d: "Fico mais crítico e focado em não errar nenhum detalhe." },
+        { q: "Ao finalizar um turno de trabalho:", a: "Saio com a sensação de dever cumprido se a meta foi batida.", b: "Saio feliz se tive boas conversas com os colegas.", c: "Saio satisfeito se o dia foi tranquilo e produtivo.", d: "Saio tranquilo se tudo foi conferido e deixado em ordem." },
+        { q: "Como você aprende a operar uma máquina nova?", a: "Mexendo na prática e descobrindo os atalhos.", b: "Pedindo para alguém me mostrar como faz.", c: "Observando o colega experiente por um tempo.", d: "Lendo o manual técnico de ponta a ponta." },
+        { q: "Sua principal qualidade na produção é:", a: "Determinação/Agilidade.", b: "Entusiasmo/Comunicação.", c: "Lealdade/Paciência.", d: "Precisão/Organização." },
+        { q: "O que te faz perder a paciência na gráfica?", a: "Lentidão e falta de iniciativa dos outros.", b: "Falta de reconhecimento ou ser isolado do grupo.", c: "Mudanças bruscas e falta de rotina.", d: "Trabalho feito de qualquer jeito, sem capricho." },
+        { q: "Ao identificar um gargalo na produção:", a: "Intervenho para acelerar aquele ponto imediatamente.", b: "Sugiro uma dinâmica de grupo para resolver o fluxo.", c: "Aguardo o fluxo normalizar sozinho para não gerar caos.", d: "Estudo o processo para entender onde está a falha lógica." },
+        { q: "Sua relação com a tecnologia gráfica:", a: "Uso para ganhar tempo, mesmo que não domine tudo.", b: "Gosto quando ela facilita a comunicação entre áreas.", c: "Prefiro as tecnologias que já conheço e domino.", d: "Busco dominar cada parâmetro técnico da ferramenta." }
     ];
 
     const qContainer = document.getElementById('questions');
@@ -92,10 +127,10 @@
         div.className = 'question';
         div.innerHTML = `
             <p>${i+1}. ${item.q}</p>
-            <label><input type="radio" name="Q${i+1}" value="A" required> ${item.a}</label>
-            <label><input type="radio" name="Q${i+1}" value="B"> ${item.b}</label>
-            <label><input type="radio" name="Q${i+1}" value="C"> ${item.c}</label>
-            <label><input type="radio" name="Q${i+1}" value="D"> ${item.d}</label>
+            <label class="option-label"><input type="radio" name="Q${i+1}" value="A" required> ${item.a}</label>
+            <label class="option-label"><input type="radio" name="Q${i+1}" value="B"> ${item.b}</label>
+            <label class="option-label"><input type="radio" name="Q${i+1}" value="C"> ${item.c}</label>
+            <label class="option-label"><input type="radio" name="Q${i+1}" value="D"> ${item.d}</label>
         `;
         qContainer.appendChild(div);
     });
@@ -106,7 +141,9 @@
         for(let v of formData.values()) { if(c[v] !== undefined) c[v]++; }
 
         const max = Object.keys(c).reduce((a, b) => c[a] > c[b] ? a : b);
-        const nomes = { A: "DOMINANTE", B: "INFLUENTE", C: "ESTÁVEL", D: "CONFORME" };
+        const nomes = { 
+            A: "DOMINANTE", B: "INFLUENTE", C: "ESTÁVEL", D: "CONFORME" 
+        };
 
         document.getElementById('res_perfil').value = nomes[max];
         document.getElementById('res_a').value = c.A;
@@ -117,12 +154,11 @@
         document.getElementById('btn-submit').style.display = 'none';
         document.getElementById('loading-text').style.display = 'block';
 
-        // O envio acontece via Formspree. Após o envio, escondemos o form.
         setTimeout(() => {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
             window.scrollTo(0,0);
-        }, 1500);
+        }, 1200);
     };
 </script>
 
