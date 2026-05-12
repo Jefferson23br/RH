@@ -16,7 +16,9 @@
         
         label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #2d3748; }
         input[type="text"], input[type="email"], input[type="tel"], input[type="number"] { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; transition: 0.3s; }
+        input[type="file"] { width: 100%; padding: 12px; border: 2px dashed #cbd5e0; border-radius: 6px; box-sizing: border-box; background: #f8fafc; }
         input:focus { border-color: #3498db; outline: none; background: #fff; }
+        .alert-erro { display: none; margin-bottom: 24px; padding: 16px 20px; background: #fff5f5; border: 1px solid #fc8181; border-radius: 8px; color: #c53030; }
         
         /* Estilização das Perguntas */
         .question { margin-bottom: 30px; padding: 25px; border: 1px solid #edf2f7; border-radius: 12px; background: #ffffff; transition: transform 0.2s; }
@@ -45,16 +47,23 @@
     <h1>Avaliação de Perfil Profissional Gráfico</h1>
     <p class="intro">Analise as situações abaixo e responda com base no seu comportamento real no ambiente de produção.</p>
 
-    <form id="behavioralForm" action="https://formspree.io/f/xkoplenw" method="POST">
+    <div class="alert-erro" id="msg-erro" role="alert"></div>
+
+    <form id="behavioralForm" action="enviar.php" method="POST" enctype="multipart/form-data">
         
         <div class="user-info">
             <div class="full-width">
                 <label>Nome Completo:</label>
                 <input type="text" name="Nome_Candidato" required placeholder="Nome e sobrenome">
             </div>
+            <div class="full-width">
+                <label>Qual vaga você está se candidatando?</label>
+                <input type="text" name="Vaga" required placeholder="Ex.: Operador de impressão, Auxiliar de acabamento…">
+                <p style="margin:8px 0 0;font-size:13px;font-weight:500;color:#718096;">Este texto será usado como <strong>assunto do e-mail</strong> que recebermos.</p>
+            </div>
             <div>
                 <label>E-mail:</label>
-                <input type="email" name="_replyto" required placeholder="exemplo@email.com">
+                <input type="email" name="Email" required placeholder="exemplo@email.com">
             </div>
             <div>
                 <label>Telefone / WhatsApp:</label>
@@ -75,6 +84,12 @@
         </div>
 
         <div id="questions"></div>
+
+        <div class="salary-section" style="background:#f0f9ff;border-color:#90cdf4;">
+            <label>Currículo ou portfólio (opcional):</label>
+            <p style="margin:0 0 12px;font-size:14px;font-weight:500;color:#4a5568;">PDF, Word ou imagem — até 8 MB. Se não quiser enviar arquivo, deixe em branco.</p>
+            <input type="file" name="anexo" id="anexo" accept=".pdf,.doc,.docx,image/png,image/jpeg,image/webp">
+        </div>
 
         <div class="salary-section">
             <label>Pretensão Salarial (R$):</label>
@@ -138,11 +153,11 @@
     document.getElementById('behavioralForm').onsubmit = function() {
         const formData = new FormData(this);
         let c = { A: 0, B: 0, C: 0, D: 0 };
-        for(let v of formData.values()) { if(c[v] !== undefined) c[v]++; }
+        for (let v of formData.values()) { if (c[v] !== undefined) c[v]++; }
 
         const max = Object.keys(c).reduce((a, b) => c[a] > c[b] ? a : b);
-        const nomes = { 
-            A: "DOMINANTE", B: "INFLUENTE", C: "ESTÁVEL", D: "CONFORME" 
+        const nomes = {
+            A: "DOMINANTE", B: "INFLUENTE", C: "ESTÁVEL", D: "CONFORME"
         };
 
         document.getElementById('res_perfil').value = nomes[max];
@@ -153,13 +168,29 @@
 
         document.getElementById('btn-submit').style.display = 'none';
         document.getElementById('loading-text').style.display = 'block';
+    };
 
-        setTimeout(() => {
+    (function () {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('enviado') === '1') {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
-            window.scrollTo(0,0);
-        }, 1200);
-    };
+            window.scrollTo(0, 0);
+            return;
+        }
+        var codigo = params.get('erro');
+        if (codigo) {
+            var textos = {
+                config: 'O servidor não está configurado. Copie config.example.php para config.php e defina o e-mail de destino.',
+                campos: 'Alguns dados obrigatórios não foram recebidos. Preencha nome, vaga, e-mail e telefone e tente de novo.',
+                envio: 'Não foi possível enviar o e-mail pelo servidor. Verifique se o PHP está com mail() ou SMTP configurado na hospedagem.'
+            };
+            var el = document.getElementById('msg-erro');
+            el.textContent = textos[codigo] || 'Ocorreu um erro ao enviar. Tente novamente mais tarde.';
+            el.style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    })();
 </script>
 
 </body>
