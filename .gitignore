@@ -1,0 +1,10 @@
+# Configuração com e-mail e dados do ambiente
+config.php
+
+# Sistema operacional / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
