@@ -1,0 +1,120 @@
+LICENÇA DE SOFTWARE PROPRIETÁRIO
+
+Copyright (c) 2026 Titular dos Direitos. Todos os direitos reservados.
+
+================================================================================
+1. DEFINIÇÕES
+================================================================================
+
+1.1. "Software" designa o código-fonte, documentação, assets e demais arquivos
+     deste repositório, incluindo, sem limitação, formulários, scripts PHP,
+     estilos e conteúdos associados.
+
+1.2. "Titular" é a pessoa física ou jurídica detentária dos direitos autorais e
+     de propriedade intelectual sobre o Software.
+
+1.3. "Licenciado" é qualquer pessoa que obtenha autorização expressa e escrita
+     do Titular para usar o Software.
+
+================================================================================
+2. CONCESSÃO DE DIREITOS
+================================================================================
+
+2.1. Nenhum direito é concedido por este documento, salvo autorização prévia,
+     expressa e por escrito do Titular.
+
+2.2. Sem licença escrita, é vedado ao Licenciado ou a terceiros:
+
+     (a) copiar, reproduzir ou duplicar o Software, no todo ou em parte;
+     (b) distribuir, publicar, sublicenciar, alugar ou ceder o Software;
+     (c) modificar, adaptar, traduzir, descompilar, fazer engenharia reversa ou
+         derivar obras do Software;
+     (d) remover avisos de direitos autorais, marcas ou legendas de propriedade;
+     (e) usar o Software para fins comerciais, internos ou externos, sem permissão.
+
+================================================================================
+3. PROPRIEDADE INTELECTUAL E DIREITOS AUTORAIS
+================================================================================
+
+3.1. O Software é obra intelectual protegida pela legislação brasileira,
+     especialmente:
+
+     - Lei nº 9.610, de 19 de fevereiro de 1998 (Lei de Direitos Autorais — LDA);
+     - Lei nº 9.609, de 19 de fevereiro de 1998 (Lei do Software), quando
+       aplicável a programas de computador;
+     - Lei nº 9.279, de 14 de maio de 1996 (Lei de Propriedade Industrial), no
+       que couber a marcas e sinais distintivos;
+     - Constituição Federal de 1988, art. 5º, incisos XXVII e XXIX.
+
+3.2. O Titular detém exclusivamente os direitos patrimoniais e morais sobre o
+     Software, incluindo autoría, integridade, modificação e exploração econômica.
+
+3.3. O Licenciado não adquire propriedade sobre o Software; recebe apenas o
+     direito de uso nos termos eventualmente acordados em instrumento separado.
+
+================================================================================
+4. DADOS PESSOAIS (LGPD)
+================================================================================
+
+4.1. O Software pode processar dados pessoais de candidatos (ex.: nome, CPF,
+     e-mail, telefone, endereço, pretensão salarial e anexos).
+
+4.2. Quem implantar o Software é responsável pelo tratamento desses dados em
+     conformidade com a Lei nº 13.709, de 14 de agosto de 2018 (LGPD), incluindo
+     bases legais, transparência, segurança, retenção e direitos dos titulares.
+
+4.3. O Titular do Software não se responsabiliza pelo uso indevido ou pela
+     ausência de políticas de privacidade e segurança adotadas pelo operador da
+     instalação, salvo disposição contratual em contrário.
+
+================================================================================
+5. GARANTIAS E LIMITAÇÃO DE RESPONSABILIDADE
+================================================================================
+
+5.1. O Software é fornecido "NO ESTADO EM QUE SE ENCONTRA" ("AS IS"), sem
+     garantias expressas ou implícitas de comercialização, adequação a finalidade
+     específica ou ausência de defeitos.
+
+5.2. Na máxima extensão permitida pela lei aplicável, o Titular não será
+     responsável por danos diretos, indiretos, incidentais, especiais, lucros
+     cessantes ou perda de dados decorrentes do uso ou da impossibilidade de uso
+     do Software.
+
+================================================================================
+6. CONFIDENCIALIDADE
+================================================================================
+
+6.1. Código-fonte, documentação técnica, credenciais de configuração e informações
+     não públicas relacionadas ao Software são confidenciais, salvo divulgação
+     autorizada pelo Titular.
+
+================================================================================
+7. RESCISÃO
+================================================================================
+
+7.1. Qualquer uso não autorizado constitui violação desta licença e autoriza o
+     Titular a exigir cessação imediata, indenização e medidas judiciais cabíveis,
+     inclusive tutela de urgência e busca e apreensão de cópias irregulares.
+
+================================================================================
+8. LEI APLICÁVEL E FORO
+================================================================================
+
+8.1. Esta licença rege-se pelas leis da República Federativa do Brasil.
+
+8.2. Fica eleito o foro da comarca do domicílio do Titular, com renúncia a
+     qualquer outro, por mais privilegiado que seja, salvo competência absoluta
+     em lei.
+
+================================================================================
+9. CONTATO PARA LICENCIAMENTO
+================================================================================
+
+Para obter licença de uso, sublicenciamento ou cessão de direitos, entre em
+contato com o Titular por canal oficial indicado pelo mantenedor do projeto.
+
+================================================================================
+
+AVISO: A utilização deste repositório sem autorização expressa do Titular
+configura violação de direitos autorais e pode ensejar responsabilidade civil
+e criminal nos termos da legislação brasileira.
