@@ -9,7 +9,7 @@ declare(strict_types=1);
 $configPath = __DIR__ . '/config.php';
 if (!is_file($configPath)) {
     http_response_code(500);
-    header('Location: index.html?erro=config');
+    header('Location: index.html?erro=config_ausente');
     exit;
 }
 
@@ -23,9 +23,25 @@ $smtpAtivo = !empty($smtpConfig['ativo']);
 $remetenteEmail = $config['remetente_email'] ?? null;
 $remetenteEmail = is_string($remetenteEmail) ? filter_var($remetenteEmail, FILTER_VALIDATE_EMAIL) : false;
 
+$smtpUsuario = is_string($smtpConfig['usuario'] ?? null)
+    ? filter_var(trim($smtpConfig['usuario']), FILTER_VALIDATE_EMAIL)
+    : false;
+$smtpSenha = is_string($smtpConfig['senha'] ?? null) ? $smtpConfig['senha'] : '';
+$smtpHost = is_string($smtpConfig['host'] ?? null) ? trim($smtpConfig['host']) : '';
+
 if (!$para) {
     http_response_code(500);
-    header('Location: index.html?erro=config');
+    header('Location: index.html?erro=config_para');
+    exit;
+}
+
+if ($smtpAtivo && ($smtpHost === '' || !$smtpUsuario || $smtpSenha === '' || $smtpSenha === 'SUA_SENHA_DO_EMAIL')) {
+    header('Location: index.html?erro=config_smtp');
+    exit;
+}
+
+if (!$smtpAtivo && !$remetenteEmail) {
+    header('Location: index.html?erro=config_remetente');
     exit;
 }
 
@@ -90,12 +106,7 @@ $replyTo = $emailCandidato;
 $tituloEmail = assuntoSeguro($vaga, $assuntoBase);
 
 $dominio = preg_replace('/^www\./', '', (string) ($_SERVER['SERVER_NAME'] ?? 'localhost'));
-$fromAddr = $remetenteEmail ?: ('noreply@' . $dominio);
-
-if (!$smtpAtivo && !$remetenteEmail) {
-    header('Location: index.html?erro=config');
-    exit;
-}
+$fromAddr = $remetenteEmail ?: ($smtpUsuario ?: ('noreply@' . $dominio));
 
 $anexoPath = null;
 $anexoNome = null;
