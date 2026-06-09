@@ -8,9 +8,22 @@ return [
   /** Usado só como assunto reserva se o campo “Vaga” vier vazio */
   'assunto' => '[RH] Nova candidatura',
   /**
-   * Opcional: use um e-mail do mesmo domínio do site para reduzir risco de spam.
-   * Se null, será usado noreply@ + nome do servidor.
+   * E-mail do seu domínio (obrigatório na Hostinger e na maioria das hospedagens).
+   * Crie a conta em hPanel → E-mails → Contas de e-mail.
    */
-  'remetente_email' => null,
+  'remetente_email' => 'formulario@seudominio.com.br',
   'remetente_nome' => 'Formulário RH',
+  /**
+   * SMTP autenticado (recomendado na Hostinger). Se 'ativo' => true, o PHPMailer
+   * substitui mail(). Use os mesmos dados da conta de e-mail criada no hPanel.
+   */
+  'smtp' => [
+    'ativo' => true,
+    'host' => 'smtp.hostinger.com',
+    'porta' => 587,
+    'usuario' => 'formulario@seudominio.com.br',
+    'senha' => 'SUA_SENHA_DO_EMAIL',
+    /** 'tls' (porta 587) ou 'ssl' (porta 465) */
+    'seguranca' => 'tls',
+  ],
 ];
