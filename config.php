@@ -1,16 +1,21 @@
 <?php
 /**
  * Configuração local — não commite este arquivo em repositórios públicos.
- * Use config.example.php como base.
+ * Substitua os valores abaixo pelos dados reais do seu domínio na Hostinger.
  */
 return [
+  /** E-mail que recebe as candidaturas */
   'para' => 'rh@seudominio.com.br',
-  /** Usado só como assunto reserva se o campo “Vaga” vier vazio */
   'assunto' => '[RH] Nova candidatura',
-  /**
-   * Opcional: use um e-mail do mesmo domínio do site para reduzir risco de spam.
-   * Se null, será usado noreply@ + nome do servidor.
-   */
-  'remetente_email' => null,
+  /** Mesmo e-mail usado no SMTP abaixo */
+  'remetente_email' => 'formulario@seudominio.com.br',
   'remetente_nome' => 'Formulário RH',
+  'smtp' => [
+    'ativo' => true,
+    'host' => 'smtp.hostinger.com',
+    'porta' => 587,
+    'usuario' => 'formulario@seudominio.com.br',
+    'senha' => 'SUA_SENHA_DO_EMAIL',
+    'seguranca' => 'tls',
+  ],
 ];
