@@ -181,9 +181,13 @@
         var codigo = params.get('erro');
         if (codigo) {
             var textos = {
-                config: 'O servidor não está configurado. Copie config.example.php para config.php, defina o e-mail de destino e um remetente do seu domínio (ou SMTP).',
+                config: 'O servidor não está configurado. Copie config.example.php para config.php e ajuste os e-mails.',
+                config_ausente: 'Arquivo config.php não encontrado no servidor. Crie-o em public_html copiando config.example.php.',
+                config_para: 'E-mail de destino inválido em config.php. Corrija o campo "para" com um e-mail real (ex.: rh@seudominio.com.br).',
+                config_remetente: 'Defina remetente_email em config.php com um e-mail do seu domínio, ou ative SMTP.',
+                config_smtp: 'SMTP incompleto em config.php. Preencha host, usuario, senha e remova o texto SUA_SENHA_DO_EMAIL.',
                 campos: 'Alguns dados obrigatórios não foram recebidos. Preencha nome, vaga, e-mail e telefone e tente de novo.',
-                envio: 'Não foi possível enviar o e-mail. Na Hostinger, crie uma conta de e-mail no domínio, configure SMTP em config.php e envie os arquivos atualizados para o servidor.'
+                envio: 'Não foi possível enviar o e-mail. Verifique a senha SMTP e se a conta de e-mail existe no hPanel da Hostinger.'
             };
             var el = document.getElementById('msg-erro');
             el.textContent = textos[codigo] || 'Ocorreu um erro ao enviar. Tente novamente mais tarde.';
